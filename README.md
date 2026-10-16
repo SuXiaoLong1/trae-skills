@@ -4,6 +4,7 @@
 
 ## 可用 Skill 列表
 
+<!-- SKILLS_TABLE_START -->
 | Skill 名称 | 描述 |
 |---|---|
 | **skill-creator** | 创建新 Skill 的引导工具。当用户想要创建/添加 skill 时必须调用 |
@@ -14,6 +15,7 @@
 | **TRAE-computer-use-ptc** | 计算机使用（PTC 模式）。通过 Computer Use MCP 进行桌面交互 |
 | **digital-avatar-creator** | 数字分身创建器。创建自主运行的 SubAgent 数字分身 |
 | **dynamic-ui** | 动态 UI 内联可视化。生成图表、架构图、交互式 demo 等可视化内容 |
+<!-- SKILLS_TABLE_END -->
 
 ## 安装方式
 
