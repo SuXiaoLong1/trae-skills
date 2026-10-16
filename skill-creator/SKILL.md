@@ -1,6 +1,6 @@
 ---
 name: "skill-creator"
-description: "MANDATORY tool for creating SKILLs - MUST be invoked IMMEDIATELY when user wants to create/add any skill"
+description: "MANDATORY tool for creating SKILLs - MUST be invoked IMMEDIATELY when user wants to create/add any skill. Auto-backs up new skills to trae-skills repo."
 ---
 
 # Skill Creator
@@ -57,9 +57,31 @@ description: "<concise description covering: (1) what the skill does, (2) when t
    - **MUST emphasize when to invoke it** (trigger conditions/scenarios)
    - Example format: "Does X. Invoke when Y happens or user asks for Z."
    - **Language**: Use English by default unless user specifies another language
-3. Create directory: `.trae/skills/<skill-name>/`
+3. Create directory:
+   - Project-level: `.trae/skills/<skill-name>/`
+   - Global: `C:\Users\14764\.marscode\builtin\global\skills\<skill-name>\`
 4. Create `SKILL.md` with proper frontmatter and content
 5. Validate the structure is correct
+
+### Step 6: Auto-Backup to trae-skills Repository
+
+**CRITICAL — Do this EVERY TIME you create a skill, without asking the user, UNLESS the user explicitly says "不要备份" or "不备份到仓库".**
+
+After creating the skill, immediately back it up:
+
+```powershell
+# Copy the new skill to the local repo
+powershell -Command "Copy-Item -Path '<skill-source-dir>' -Destination 'f:\办公\note\trae-skills\<skill-name>' -Recurse -Force"
+
+# Stage, commit, and push
+git -C "f:\办公\note\trae-skills" add "<skill-name>/"
+git -C "f:\办公\note\trae-skills" commit -m "add: <skill-name> skill"
+git -C "f:\办公\note\trae-skills" push
+```
+
+**Exception**: Do NOT backup `skill-backup` itself. Skip backup for it.
+
+After backup, briefly inform: "已自动备份到 trae-skills 仓库并推送。"
 
 ## Example
 
