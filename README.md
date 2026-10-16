@@ -7,7 +7,8 @@
 <!-- SKILLS_TABLE_START -->
 | Skill 名称 | 描述 |
 |---|---|
-| **skill-creator** | 创建新 Skill 的引导工具。当用户想要创建/添加 skill 时必须调用 |
+| **skill-creator** | 创建新 Skill 的引导工具，创建后自动备份到仓库。当用户想要创建/添加 skill 时必须调用 |
+| **plan-before-execute** | 计划先行模式。执行操作前先制定分步计划，用户确认后逐步执行 |
 | **TRAE-browseruse** | 浏览器自动化指南。用于浏览网页、抓取内容、测试前端 UI |
 | **TRAE-browseruse-external** | 外部 Chrome 浏览器自动化。操作用户本地 Chrome 浏览器 |
 | **TRAE-code-mode-orchestrator** | 代码模式编排器。用于并行调用、管道处理、条件分支等复杂工具编排 |
@@ -16,6 +17,8 @@
 | **digital-avatar-creator** | 数字分身创建器。创建自主运行的 SubAgent 数字分身 |
 | **dynamic-ui** | 动态 UI 内联可视化。生成图表、架构图、交互式 demo 等可视化内容 |
 <!-- SKILLS_TABLE_END -->
+
+> ℹ️ **skill-backup** 为全局专用 skill，负责将其他 skill 备份到本仓库，不放入仓库中。
 
 ## 安装方式
 
@@ -72,7 +75,9 @@ bash install.sh --target project --skill skill-creator
 
 ```
 trae-skills/
-├── skill-creator/                  # Skill 创建器
+├── skill-creator/                  # Skill 创建器（自动备份）
+│   └── SKILL.md
+├── plan-before-execute/            # 计划先行模式
 │   └── SKILL.md
 ├── TRAE-browseruse/                # 浏览器自动化
 │   └── SKILL.md
@@ -94,5 +99,6 @@ trae-skills/
 │   └── tokens/
 ├── install.ps1                     # Windows 安装脚本
 ├── install.sh                      # macOS/Linux 安装脚本
+├── LICENSE                         # MIT 开源协议
 └── README.md
 ```
