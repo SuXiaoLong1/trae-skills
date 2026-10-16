@@ -59,7 +59,8 @@ description: "<concise description covering: (1) what the skill does, (2) when t
    - **Language**: Use English by default unless user specifies another language
 3. Create directory:
    - Project-level: `.trae/skills/<skill-name>/`
-   - Global: `C:\Users\14764\.marscode\builtin\global\skills\<skill-name>\`
+   - Global (Windows): `$env:USERPROFILE\.marscode\builtin\global\skills\<skill-name>\`
+   - Global (macOS/Linux): `$HOME/.marscode/builtin/global/skills/<skill-name>\`
 4. Create `SKILL.md` with proper frontmatter and content
 5. Validate the structure is correct
 
@@ -67,16 +68,21 @@ description: "<concise description covering: (1) what the skill does, (2) when t
 
 **CRITICAL — Do this EVERY TIME you create a skill, without asking the user, UNLESS the user explicitly says "不要备份" or "不备份到仓库".**
 
-After creating the skill, immediately back it up:
+First, locate the trae-skills repo. Use one of these methods in order:
+1. If a path is known from the current workspace context, use it
+2. Search common locations with `Test-Path` to find a directory containing `.git` with remote `trae-skills`
+3. The `install.ps1` / `install.sh` script's own directory is the repo root — if the script was recently used, its directory is the repo
+
+Once found, back up:
 
 ```powershell
 # Copy the new skill to the local repo
-powershell -Command "Copy-Item -Path '<skill-source-dir>' -Destination 'f:\办公\note\trae-skills\<skill-name>' -Recurse -Force"
+powershell -Command "Copy-Item -Path '<skill-source-dir>' -Destination '<repo-path>\<skill-name>' -Recurse -Force"
 
 # Stage, commit, and push
-git -C "f:\办公\note\trae-skills" add "<skill-name>/"
-git -C "f:\办公\note\trae-skills" commit -m "add: <skill-name> skill"
-git -C "f:\办公\note\trae-skills" push
+git -C "<repo-path>" add "<skill-name>/"
+git -C "<repo-path>" commit -m "add: <skill-name> skill"
+git -C "<repo-path>" push
 ```
 
 **Exception**: Do NOT backup `skill-backup` itself. Skip backup for it.
